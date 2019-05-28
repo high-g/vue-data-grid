@@ -1,6 +1,19 @@
 <template>
   <div id="app">
-    <DataGrid :list="list" />
+    <div class="mb100">
+      <h2>normal</h2>
+      <DataGrid :list="list" />
+    </div>
+
+    <div class="mb100">
+      <h2>masonry</h2>
+      <DataGrid :list="list" grid="masonry" />
+    </div>
+
+    <div class="mb100">
+      <h2>random</h2>
+      <DataGrid :list="list" grid="random" />
+    </div>
   </div>
 </template>
 
@@ -56,5 +69,8 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
+}
+.mb100 {
+  margin-bottom: 100px;
 }
 </style>
