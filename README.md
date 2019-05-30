@@ -1,3 +1,3 @@
-# vue-json-grid
+# vue-data-grid
 
 
