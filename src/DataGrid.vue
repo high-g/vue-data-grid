@@ -92,6 +92,7 @@ export default {
      */
     itemGridGap() {
       let strStyle = ''
+
       if(this.gap && this.grid === 'masonry') {
         strStyle += `margin-bottom: ${this.gap};`;
       }
@@ -289,7 +290,7 @@ export default {
 .random {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto auto auto;
   column-gap: 10px;
   row-gap: 10px;
 }
