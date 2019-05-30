@@ -1,10 +1,10 @@
 <template>
-  <div :class="gridType" :style="randomGridTemplates">
+  <div :class="gridType" :style="styleContainer">
     <div
       v-for="(item, index) in list"
       :key="index"
       class="item"
-      :style="randomGridArea(index + 1)"
+      :style="styleItem(index + 1)"
     >
       <img :src="item.img">
       <p>{{ item.text }}</p>
@@ -16,7 +16,12 @@
 export default {
   props: {
     list: Array,
-    grid: String
+    grid: String,
+    gap: String,
+    animationType: String,
+    animationOrder: String,
+    animationSpeed: String,
+
   },
   data() {
     return {
@@ -39,6 +44,69 @@ export default {
       } else {
         return 'normal'
       }
+    },
+
+    /**
+     * コンテナのスタイル調整
+     */
+    styleContainer() {
+      let strStyle = ''
+      strStyle += this.templateGridGap()
+      strStyle += this.randomGridTemplates()
+      return strStyle
+    },
+
+    /**
+     * アイテムのスタイル調整
+     */
+    styleItem() {
+      return num => {
+        let strStyle = ''
+        strStyle += this.itemGridGap()
+        strStyle += this.itemAnimation()
+        strStyle += this.randomGridArea(num)
+        return strStyle
+      }
+    }
+  },
+  created() {
+    if(this.grid === 'random') {
+      this.createRandomArray(this.list.length)
+    }
+  },
+  methods: {
+    /**
+     * 全体のgrid幅調整
+     */
+    templateGridGap() {
+      let strStyle = ''
+      if(this.gap) {
+        const gap = this.gap
+        strStyle += `column-gap: ${gap}; row-gap: ${gap};`;
+      }
+      return strStyle
+    },
+
+    /**
+     * アイテムのgrid幅調整
+     */
+    itemGridGap() {
+      let strStyle = ''
+      if(this.gap && this.grid === 'masonry') {
+        strStyle += `margin-bottom: ${this.gap};`;
+      }
+      return strStyle
+    },
+
+    /**
+     * アイテムのアニメーション
+     */
+    itemAnimation() {
+      let strStyle = ''
+      if(this.animationType) {
+        strStyle += 'animation: fadeIn 1s infinite;'
+      }
+      return strStyle
     },
 
     /**
@@ -69,8 +137,6 @@ export default {
           }
         }
         strTemplates += ';'
-
-        console.log(strTemplates);
       }
 
       return strTemplates
@@ -79,24 +145,14 @@ export default {
     /**
      * ランダムgridArea
      */
-    randomGridArea() {
-      return (num) => {
-        let strArea = ''
-
-        if(this.grid === 'random') {
-          strArea = 'grid-area: area' + num + ';';
-          console.log('strArea',strArea)
-        }
-        return strArea
+    randomGridArea(num) {
+      let strArea = ''
+      if(this.grid === 'random') {
+        strArea = 'grid-area: area' + num + ';';
       }
-    }
-  },
-  created() {
-    if(this.grid === 'random') {
-      this.createRandomArray(this.list.length)
-    }
-  },
-  methods: {
+      return strArea
+    },
+
     /**
      * 描画用二次元配列作成
      * @param len {Number}
@@ -111,7 +167,6 @@ export default {
         rect = this.getDrawRect(pos)
         this.setRandomArray(pos, rect, i)
       }
-      console.log('randomArray', this.randomArray);
     },
 
     /**
@@ -201,9 +256,11 @@ export default {
 
 <style lang="scss" scoped>
 .item {
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
-  border: 1px solid #999;
+  border: 1px solid #fff;
+  background: #fff;
+  text-align: left;
 
   img {
     width: 100%;
@@ -213,26 +270,26 @@ export default {
 .normal {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 5px;
-  row-gap: 5px;
+  column-gap: 10px;
+  row-gap: 10px;
 }
 
 .masonry {
   column-count: 3;
-  column-gap: 3px;
+  column-gap: 10px;
 
   .item {
     page-break-inside: avoid;
     break-inside: avoid;
-    margin-bottom: 3px;
+    margin-bottom: 10px;
   }
 }
 
 .random {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 5px;
-  row-gap: 5px;
+  column-gap: 10px;
+  row-gap: 10px;
 }
 
 @media (max-width: 800px) {
@@ -251,5 +308,10 @@ export default {
   .masonry {
     column-count: 1;
   }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 </style>

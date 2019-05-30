@@ -1,19 +1,51 @@
 <template>
   <div id="app">
-    <div class="mb100">
-      <h2>normal</h2>
+    <h1>Grid Type</h1>
+    <div class="mb80">
+      <h2>Normal</h2>
       <DataGrid :list="list" />
     </div>
 
-    <div class="mb100">
-      <h2>masonry</h2>
+    <div class="mb80">
+      <h2>Masonry</h2>
       <DataGrid :list="list" grid="masonry" />
     </div>
 
-    <div class="mb100">
-      <h2>random</h2>
+    <div class="mb80">
+      <h2>Random</h2>
       <DataGrid :list="list" grid="random" />
     </div>
+
+    <hr>
+
+    <h1>Grid Margin</h1>
+    <div class="mb80">
+      <h2>30px</h2>
+      <DataGrid :list="list" gap="30px" />
+    </div>
+    <div class="mb80">
+      <h2>2rem</h2>
+      <DataGrid :list="list" gap="2rem" />
+    </div>
+
+    <hr>
+
+    <h1>Animation</h1>
+    <div class="mb80">
+      <h2>
+        animationType="fadein"<br>
+        animationOrder="sequential"
+      </h2>
+      <DataGrid :list="list" animationType="fadein" animationOrder="sequential" animationSpeed="slow" />
+    </div>
+    <div class="mb80">
+      <h2>
+        AnimationType="fadein"<br>
+        AnimationOrder="random"
+      </h2>
+      <DataGrid :list="list" animationType="fadein" animationOrder="random" animationSpeed="slow" />
+    </div>
+
   </div>
 </template>
 
@@ -38,7 +70,7 @@ export default {
         },
         {
           img: "https://nekogazou.com/wp-content/uploads/2016/11/1-9-e1478681594812.jpg",
-          text: "スコティッシュフォールドの性格といえばどなたもご存知の印象的なあのまん丸フォルムのルックスからするとほんわか〜のんびり〜ちょっとドジな子のイメージがありますよね。もちろん見た目の可愛さ通りとても優しく見知らぬ人にもすり寄ってしまうほど人懐こいのがスコティッシュフォールドという猫種の特徴的な性格です。そのデレデレ甘えん坊ぶりは一人きりの留守番や飼い主さんの気持ちがちょっとでも離れていると感じるだけでもストレスを感じてしまうことさえあるほどなんですよね。これほどまでの甘えん坊さんにお付き合いする飼い主さんはなかなか大変かもしれませんね。そんなスコティッシュフォールドのツンデレ性格がバッチリ伝わって来る画像を集めてみました。ではご覧ください。"
+          text: "スコティッシュフォールドの性格といえばどなたもご存知の印象的なあのまん丸フォルムのルックスからするとほんわか〜のんびり〜ちょっとドジな子のイメージがありますよね。もちろん見た目の可愛さ通りとても優しく見知らぬ人にもすり寄ってしまうほど人懐こいのがスコティッシュフォールドという猫種の特徴的な性格です。"
         },
         {
           img: "https://tonarineko.com/wp-content/uploads/2015/08/HIRA96_uewomitumeruneko_TP_V.jpg",
@@ -70,7 +102,24 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-.mb100 {
-  margin-bottom: 100px;
+.mb10 {margin-bottom: 10px;}
+.mb20 {margin-bottom: 20px;}
+.mb30 {margin-bottom: 30px;}
+.mb40 {margin-bottom: 40px;}
+.mb50 {margin-bottom: 50px;}
+.mb60 {margin-bottom: 60px;}
+.mb70 {margin-bottom: 70px;}
+.mb80 {margin-bottom: 80px;}
+.mb90 {margin-bottom: 90px;}
+.mb100 {margin-bottom: 100px;}
+h1 {
+  color: #fff;
+  margin-bottom: 30px;
+}
+h2 {
+  color: #fff;
+}
+hr {
+  margin: 100px auto;
 }
 </style>
