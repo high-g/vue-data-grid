@@ -270,6 +270,7 @@ export default {
 .normal {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
   column-gap: 10px;
   row-gap: 10px;
 }
@@ -288,6 +289,7 @@ export default {
 .random {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
   column-gap: 10px;
   row-gap: 10px;
 }

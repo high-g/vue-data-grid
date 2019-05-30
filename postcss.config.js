@@ -1,12 +1,12 @@
 module.exports = {
   plugins: {
     autoprefixer: {
-      grid: true,
+      grid: 'autoplace',
       'browsers': [
         'last 2 versions',
         'Android >= 4',
         'iOS >= 9',
-        'ie >= 10'
+        'ie >= 11'
       ]
     }
   }
