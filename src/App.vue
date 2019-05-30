@@ -20,8 +20,8 @@
 
     <h1>Grid Margin</h1>
     <div class="mb80">
-      <h2>30px</h2>
-      <DataGrid :list="list" gap="30px" />
+      <h2>5px</h2>
+      <DataGrid :list="list" gap="5px" />
     </div>
     <div class="mb80">
       <h2>2rem</h2>
