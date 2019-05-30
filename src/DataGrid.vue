@@ -21,7 +21,6 @@ export default {
     animationType: String,
     animationOrder: String,
     animationSpeed: String,
-
   },
   data() {
     return {
@@ -51,8 +50,12 @@ export default {
      */
     styleContainer() {
       let strStyle = ''
-      strStyle += this.templateGridGap()
-      strStyle += this.randomGridTemplates()
+      if(this.gap) {
+        strStyle += this.templateGridGap()
+      }
+      if(this.grid === 'random') {
+        strStyle += this.randomGridTemplates()
+      }
       return strStyle
     },
 
@@ -62,9 +65,15 @@ export default {
     styleItem() {
       return num => {
         let strStyle = ''
-        strStyle += this.itemGridGap()
-        strStyle += this.itemAnimation()
-        strStyle += this.randomGridArea(num)
+        if(this.gap && this.grid === 'masonry') {
+          strStyle += this.itemGridGap()
+        }
+        if(this.animationType) {
+          strStyle += this.itemAnimation(num)
+        }
+        if(this.grid === 'random') {
+          strStyle += this.randomGridArea(num)
+        }
         return strStyle
       }
     }
@@ -79,66 +88,49 @@ export default {
      * 全体のgrid幅調整
      */
     templateGridGap() {
-      let strStyle = ''
-      if(this.gap) {
-        const gap = this.gap
-        strStyle += `column-gap: ${gap}; row-gap: ${gap};`;
-      }
-      return strStyle
+      const gap = this.gap
+      return `column-gap: ${gap}; row-gap: ${gap};`;
     },
 
     /**
      * アイテムのgrid幅調整
      */
     itemGridGap() {
-      let strStyle = ''
-
-      if(this.gap && this.grid === 'masonry') {
-        strStyle += `margin-bottom: ${this.gap};`;
-      }
-      return strStyle
+      return `margin-bottom: ${this.gap};`
     },
 
     /**
      * アイテムのアニメーション
      */
-    itemAnimation() {
-      let strStyle = ''
-      if(this.animationType) {
-        strStyle += 'animation: fadeIn 1s infinite;'
-      }
-      return strStyle
+    itemAnimation(num) {
+      return `animation-delay: ${num * 0.3}s;`
     },
 
     /**
      * ランダムgrid
      */
     randomGridTemplates() {
-      let strTemplates = ''
+      let strTemplates = 'grid-template-areas:'
+      const arr = this.randomArray
 
-      if(this.grid === 'random') {
-        strTemplates = 'grid-template-areas:'
-        const arr = this.randomArray
+      for(let y=0; y<arr.length; y++) {
+        if(arr[y].length > 0) {
+          strTemplates += '"'
+        }
 
-        for(let y=0; y<arr.length; y++) {
-          if(arr[y].length > 0) {
-            strTemplates += '"'
-          }
-
-          for(let x=0; x<this.randomColumnsMaxCount; x++) {
-            if(arr[y][x]) {
-              strTemplates += ' area' + arr[y][x]
-            } else if(arr[y].length > 0) {
-              strTemplates += ' .'
-            }
-          }
-
-          if(arr[y].length > 0) {
-            strTemplates += '" '
+        for(let x=0; x<this.randomColumnsMaxCount; x++) {
+          if(arr[y][x]) {
+            strTemplates += ' area' + arr[y][x]
+          } else if(arr[y].length > 0) {
+            strTemplates += ' .'
           }
         }
-        strTemplates += ';'
+
+        if(arr[y].length > 0) {
+          strTemplates += '" '
+        }
       }
+      strTemplates += ';'
 
       return strTemplates
     },
@@ -147,11 +139,7 @@ export default {
      * ランダムgridArea
      */
     randomGridArea(num) {
-      let strArea = ''
-      if(this.grid === 'random') {
-        strArea = 'grid-area: area' + num + ';';
-      }
-      return strArea
+      return 'grid-area: area' + num + ';'
     },
 
     /**
@@ -274,6 +262,12 @@ export default {
   grid-template-rows: auto auto auto;
   column-gap: 10px;
   row-gap: 10px;
+
+  .item.animation {
+    animation: fadeIn .5s 1;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
 }
 
 .masonry {
