@@ -1,10 +1,11 @@
 <template>
   <div :class="gridType" :style="styleContainer">
     <div
+      class="item"
       v-for="(item, index) in list"
       :key="index"
-      class="item"
       :style="styleItem(index + 1)"
+      @click="clickItem(item)"
     >
       <img :src="item.img">
       <p>{{ item.text }}</p>
@@ -17,10 +18,7 @@ export default {
   props: {
     list: Array,
     grid: String,
-    gap: String,
-    animationType: String,
-    animationOrder: String,
-    animationSpeed: String,
+    gap: String
   },
   data() {
     return {
@@ -68,9 +66,6 @@ export default {
         if(this.gap && this.grid === 'masonry') {
           strStyle += this.itemGridGap()
         }
-        if(this.animationType) {
-          strStyle += this.itemAnimation(num)
-        }
         if(this.grid === 'random') {
           strStyle += this.randomGridArea(num)
         }
@@ -84,6 +79,12 @@ export default {
     }
   },
   methods: {
+    clickItem(item) {
+      if(item.detail) {
+        window.open(item.detail, '_blank')
+      }
+    },
+
     /**
      * 全体のgrid幅調整
      */
@@ -250,6 +251,7 @@ export default {
   border: 1px solid #fff;
   background: #fff;
   text-align: left;
+  cursor: pointer;
 
   img {
     width: 100%;
