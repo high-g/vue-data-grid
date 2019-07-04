@@ -80,8 +80,8 @@ export default {
   },
   methods: {
     clickItem(item) {
-      if(item.detail) {
-        window.open(item.detail, '_blank')
+      if(item.url) {
+        window.open(item.url, '_blank')
       }
     },
 
@@ -98,13 +98,6 @@ export default {
      */
     itemGridGap() {
       return `margin-bottom: ${this.gap};`
-    },
-
-    /**
-     * アイテムのアニメーション
-     */
-    itemAnimation(num) {
-      return `animation-delay: ${num * 0.3}s;`
     },
 
     /**
@@ -264,12 +257,6 @@ export default {
   grid-template-rows: auto auto auto;
   column-gap: 10px;
   row-gap: 10px;
-
-  .item.animation {
-    animation: fadeIn .5s 1;
-    animation-fill-mode: forwards;
-    opacity: 0;
-  }
 }
 
 .masonry {
