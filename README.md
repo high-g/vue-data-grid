@@ -9,7 +9,7 @@ https://high-g.github.io/vue-data-grid/
 ### 手順
 1. script部で、`import VueDataGrid from '@/VueDataGrid'`
 2. dataで配列を格納したプロパティを用意
-3. template部で、１と2で定義したものを`<VueDataGrid :list="配列data" />`の様に記述
+3. template部で、1と2で定義したものを`<VueDataGrid :list="配列data" />`の様に記述
 
 ### 配列の中身
 ↓配列一要素あたりの中身
