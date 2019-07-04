@@ -24,6 +24,8 @@ https://high-g.github.io/vue-data-grid/
 `text` : 説明テキスト  
 `url` : クリックした時の遷移パス
 
+※ajax等でjsonデータを取得し、VueDataGridで表示する場合は、この形に合わせる必要があります。
+
 ### オプション
 #### grid
 Gridの並び順の定義です。
