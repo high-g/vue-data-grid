@@ -1,6 +1,6 @@
 vue-data-grid
 ====
-配列データをCSS Gridで表示する。
+配列データをCSS Gridで表示するコンポーネントです。
 
 ## Demo
 https://high-g.github.io/vue-data-grid/
@@ -43,4 +43,4 @@ Gridのパネル毎の余白の定義です。
 
 
 ## Install
-src/VueDataGrid.vueをコピーして利用
+src/VueDataGrid.vueをコピーして利用してください。
