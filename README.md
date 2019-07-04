@@ -25,7 +25,7 @@ https://high-g.github.io/vue-data-grid/
 `url` : クリックした時の遷移パス
 
 ### オプション
-####grid
+#### grid
 Gridの並び順の定義です。
 - normal : デフォルト状態。通常のGrid表示。
 - masonry : 縦詰めGrid表示。
@@ -33,7 +33,7 @@ Gridの並び順の定義です。
 
 (例) `<VueDataGrid :list="list" grid="masonry" />`
 
-####gap
+#### gap
 Gridのパネル毎の余白の定義です。  
 `gap="5px"` や `gap="2rem"` の様に記載します。
 
