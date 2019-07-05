@@ -5,6 +5,9 @@ vue-data-grid
 ## Demo
 https://high-g.github.io/vue-data-grid/
 
+## Install
+src/VueDataGrid.vueをコピーして利用してください。
+
 ## Usage
 ### 手順
 1. script部で、`import VueDataGrid from '@/VueDataGrid'`
@@ -41,6 +44,3 @@ Gridのパネル毎の余白の定義です。
 
 (例) `<VueDataGrid :list="list" grid="masonry" gap="5px" />`
 
-
-## Install
-src/VueDataGrid.vueをコピーして利用してください。
