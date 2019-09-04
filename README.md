@@ -1,5 +1,4 @@
-vue-data-grid
-====
+# vue-data-grid
 配列データをCSS Gridで表示するコンポーネントです。
 
 ## Demo
